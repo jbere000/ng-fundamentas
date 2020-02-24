@@ -12,27 +12,26 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   <span>&nbsp;</span>
   <span>{{event.location.city}}, {{event.location.country}}</span>
 </div>
-<br/>
-<button class='btn btn-primary' (click)='handleClickMe()'>Click Me!</button>
 </div>`,
-  styleUrls: ['./event-thumbnail.component.css']
+  styles: [`
+  .thumbnail { min-height:210px; }
+  .pad-left { margin-left: 10px; }
+  .well div { color: #bbb; }
+  `
+  ]
 })
 export class EventThumbnailComponent implements OnInit {
 @Input() event: any;
-someProperty: any;
 @Output() eventClick = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
-    this.someProperty = 'hello';
   }
 
   handleClickMe() {
   this.eventClick.emit(this.event);
   }
-  logFoo() {
-    console.log('foo');
-  }
+
 
 }
