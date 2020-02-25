@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-page404',
-  templateUrl: './page404.component.html',
+  template: `
+  <h3> Error 404: Page not found!</h3>
+  `,
   styles: [``]
 })
 export class Page404Component implements OnInit {

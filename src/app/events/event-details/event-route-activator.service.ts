@@ -8,14 +8,15 @@ export class EventRouteActivator implements CanActivate {
 
     }
     canActivate(route: ActivatedRouteSnapshot) {
-
         // tslint:disable-next-line: no-string-literal
-        const eventExists = !!this.eventService.getEvent(route.paramMap['id']);
+        const eventExists = !!this.eventService.getEvent(+route.params['id']);
         // tslint:enable-next-line: no-string-literal
 
         if (!eventExists) {
         this.router.navigate(['/404']);
         return eventExists;
         }
+        return true;
+
     }
 }

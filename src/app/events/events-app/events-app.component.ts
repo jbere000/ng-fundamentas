@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
   `,
-  styleUrls: ['./events-app.component.css']
+  styles: ['']
 })
 export class EventsAppComponent implements OnInit {
 

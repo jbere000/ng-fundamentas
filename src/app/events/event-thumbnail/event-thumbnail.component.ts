@@ -39,7 +39,7 @@ export class EventThumbnailComponent implements OnInit {
   this.eventClick.emit(this.event);
   }
   getStartTimeClass() {
-    if (this.event && this.event.time === '8:00 am') {
+    if (this.event.time === '8:00 am') {
     return 'green bold'; }
     return '';
   }
