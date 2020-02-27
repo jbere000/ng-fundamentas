@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component } from '@angular/core';
 
 @Component({
   template: `
@@ -9,10 +9,11 @@ import { Component } from '@angular/core'
       <br />
       <br />
       <button type="submit" class="btn btn-primary">Save</button>
+      &nbsp;
       <button type="button" class="btn btn-default">Cancel</button>
     </div>
   `,
 })
-export class UserComponent {
+export class ProfileComponent {
 
 }

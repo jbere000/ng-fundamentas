@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { IEvent } from '../shared';
 @Component({
   selector: 'app-event-thumbnail',
   template: `<div [routerLink]="['/events', event?.id]" class="well hoverwell thumbnail" (click)="handleClickMe()">
@@ -27,7 +28,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   ]
 })
 export class EventThumbnailComponent implements OnInit {
-@Input() event: any;
+@Input() event: IEvent;
 @Output() eventClick = new EventEmitter();
 
   constructor() { }
