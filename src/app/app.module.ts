@@ -9,7 +9,9 @@ import { UserModule } from './user/user.module';
 import { AuthService } from './user/auth.service';
 import { EventDetailsComponent, EventsListComponent,
   EventsAppComponent, EventThumbnailComponent,
-  CreateEventComponent, EventRouteActivator, EventListResolver, EventService } from './events/index';
+  CreateEventComponent, EventRouteActivator, EventListResolver, EventService, CreateSessionComponent } from './events/index';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditEventComponent } from './events/edit-event/edit-event.component';
 
 @NgModule({
   declarations: [
@@ -20,12 +22,16 @@ import { EventDetailsComponent, EventsListComponent,
     NavbarComponent,
     EventDetailsComponent,
     CreateEventComponent,
-    Page404Component
+    Page404Component,
+    EditEventComponent,
+    CreateSessionComponent
     ],
   imports: [
     UserModule,
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     AuthService,

@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EventService } from '../shared/event.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IEvent } from '../shared';
 
 @Component({
@@ -14,9 +14,10 @@ import { IEvent } from '../shared';
   ]
 })
 export class EventDetailsComponent implements OnInit {
+  @Output() eventClick = new EventEmitter();
 
   event: IEvent;
-  constructor(private eventService: EventService, private route: ActivatedRoute) {
+  constructor(private eventService: EventService, private route: ActivatedRoute, private router: Router) {
 
   }
 
@@ -26,6 +27,20 @@ export class EventDetailsComponent implements OnInit {
       const id = param;
       this.event = this.eventService.getEvent(param);
     }
+
+  }
+
+  cancel() {
+    this.router.navigate(['/events']);
+  }
+  delete() {
+console.log('deleted');
+  }
+  createSession() {
+    this.router.navigate(['events/session/new']);
+  }
+  editEvent() {
+    this.eventClick.emit(this.event);
 
   }
 

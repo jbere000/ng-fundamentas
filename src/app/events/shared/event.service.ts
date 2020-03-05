@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { IEvent } from './event.model';
+import { IEvent, ISession } from './event.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,14 @@ export class EventService {
   }
   getEvent(id: number): IEvent {
     return EVENTS.find(event => event.id === id);
+  }
+  saveEvent(event: IEvent) {
+    event.id = 999;
+    event.sessions = [];
+    EVENTS.push(event);
+  }
+  saveSession(session: ISession) {
+
   }
   constructor() { }
 }

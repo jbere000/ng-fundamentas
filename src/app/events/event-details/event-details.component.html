@@ -20,5 +20,13 @@
           {{event?.location?.city}}, {{event?.location?.country}}
         </address>
       </div>
+      
     </div>
+          
+    <button type="submit" class="btn btn-primary" [routerLink]="['/events/edit', event?.id]" (click)="editEvent()">Edit</button>
+    &nbsp;
+    <button  type="button" (click)="cancel()" class="btn btn-default">Cancel</button>
+    &nbsp;
+    <button  type="button" (click)="createSession()" class="btn btn-default">Create Session</button>
+   
   </div>

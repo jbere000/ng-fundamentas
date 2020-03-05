@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
 
     // tslint:disable-next-line: prefer-const
-    this.firstName = new FormControl(this.auth.currentUser.firstName, Validators.required);
+    this.firstName = new FormControl(this.auth.currentUser.firstName, [Validators.required, Validators.pattern('[a-zA-Z].*')]);
     // tslint:disable-next-line: prefer-const
     this.lastName = new FormControl(this.auth.currentUser.lastName, Validators.required);
     this.profileForm = new FormGroup({
