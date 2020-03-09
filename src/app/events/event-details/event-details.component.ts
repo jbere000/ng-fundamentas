@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EventService } from '../shared/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IEvent } from '../shared';
+import { IEvent, ISession } from '../shared';
 
 @Component({
   selector: 'app-event-details',
@@ -16,6 +16,7 @@ import { IEvent } from '../shared';
 export class EventDetailsComponent implements OnInit {
   @Output() eventClick = new EventEmitter();
 
+  creationMode = false;
   event: IEvent;
   constructor(private eventService: EventService, private route: ActivatedRoute, private router: Router) {
 
@@ -37,11 +38,21 @@ export class EventDetailsComponent implements OnInit {
 console.log('deleted');
   }
   createSession() {
-    this.router.navigate(['events/session/new']);
+    this.creationMode = true;
   }
   editEvent() {
     this.eventClick.emit(this.event);
 
+  }
+  saveSession(session: ISession) {
+    const nextId = Math.max.apply(null, this.event.sessions.map(s => session.id));
+    session.id = nextId + 1;
+    this.event.sessions.push(session);
+    this.eventService.updateEvent(this.event);
+    this.creationMode = false;
+  }
+  cancelNewSession() {
+    this.creationMode = false;
   }
 
 }

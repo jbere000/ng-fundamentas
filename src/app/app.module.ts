@@ -9,7 +9,8 @@ import { UserModule } from './user/user.module';
 import { AuthService } from './user/auth.service';
 import { EventDetailsComponent, EventsListComponent,
   EventsAppComponent, EventThumbnailComponent,
-  CreateEventComponent, EventRouteActivator, EventListResolver, EventService, CreateSessionComponent } from './events/index';
+  CreateEventComponent, EventRouteActivator, EventListResolver, EventService, CreateSessionComponent,
+  SessionListComponent} from './events/index';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditEventComponent } from './events/edit-event/edit-event.component';
 
@@ -24,7 +25,8 @@ import { EditEventComponent } from './events/edit-event/edit-event.component';
     CreateEventComponent,
     Page404Component,
     EditEventComponent,
-    CreateSessionComponent
+    CreateSessionComponent,
+    SessionListComponent
     ],
   imports: [
     UserModule,

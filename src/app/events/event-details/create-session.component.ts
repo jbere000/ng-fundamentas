@@ -1,19 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, Form } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ISession, EventService } from '../shared';
-import { preserveWhitespacesDefault } from '@angular/compiler';
+import { invalid } from '@angular/compiler/src/render3/view/util';
 
 @Component({
+    selector: 'app-create-session',
     templateUrl: './create-session.component.html',
-    styles: [`em {float: right; color: #E0565C; padding-left: 10px;}
-    .error input {background-color: #E3C3C5}
+    styles: [`
+    em {float: right; color: #E0565C; padding-left: 10px;}
+    .error {background-color: #E3C3C5}
     .error ::-webkit-input-placeholder {color: #999;}
     .error ::-moz-placeholder {color: #999;}
     .error :-moz-placeholder {color: #999;}
     .error :-ms-input-placeholder {color: #999;}`]
 })
 export class CreateSessionComponent implements OnInit {
+    @Output() saveNewSession = new EventEmitter();
+    @Output() cancelNewSession = new EventEmitter();
 
     isDirty = true;
     session: ISession;
@@ -31,7 +35,7 @@ export class CreateSessionComponent implements OnInit {
          this.presenter = new FormControl('', Validators.required),
          this.duration = new FormControl('', Validators.required),
          this.level = new FormControl('', Validators.required),
-         this.abstract = new FormControl('', [Validators.required, Validators.maxLength(400)]);
+         this.abstract = new FormControl('', [Validators.required, Validators.maxLength(400), this.restrictedWords(['foo', 'bar'])]);
 
          this.newSessionForm = new FormGroup ({
             name: this.name,
@@ -54,9 +58,21 @@ export class CreateSessionComponent implements OnInit {
         };
 
         console.log(this.session);
+        this.saveNewSession.emit(this.session);
 
     }
     cancel() {
-        this.router.navigate(['/events']);
-      }
+
+        this.cancelNewSession.emit();
+    }
+
+    private restrictedWords(words) {
+    return (control: FormControl): {[key: string]: any} => {
+        if (!words) {
+            return null; }
+        const invalidWords = words.map(
+            w => control.value.includes(w) ? w : null).filter(w => w != null);
+        return invalidWords && invalidWords.length > 0 ? {restrictedWords: invalidWords.join(', ')} : null;
+    };
+}
 }

@@ -20,6 +20,11 @@ export class EventService {
     event.sessions = [];
     EVENTS.push(event);
   }
+  updateEvent(event: IEvent) {
+    // tslint:disable-next-line: prefer-const
+    let index = EVENTS.findIndex(x => x.id = event.id);
+    EVENTS[index] = event;
+  }
   saveSession(session: ISession) {
 
   }
