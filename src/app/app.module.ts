@@ -13,7 +13,7 @@ import { EventDetailsComponent, EventsListComponent,
   SessionListComponent} from './events/index';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditEventComponent } from './events/edit-event/edit-event.component';
-
+import { CollapsibleWellComponent} from './common/collapsible-well.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +26,8 @@ import { EditEventComponent } from './events/edit-event/edit-event.component';
     Page404Component,
     EditEventComponent,
     CreateSessionComponent,
-    SessionListComponent
+    SessionListComponent,
+    CollapsibleWellComponent
     ],
   imports: [
     UserModule,

@@ -11,15 +11,16 @@ export class EditEventComponent implements OnInit {
 
 
   event: IEvent;
+  param;
   constructor(private eventService: EventService, private route: ActivatedRoute, private router: Router) {
 
   }
 
   ngOnInit(): void {
-    const param = +this.route.snapshot.paramMap.get('id');
-    if (param) {
-      const id = param;
-      this.event = this.eventService.getEvent(param);
+    this.param = +this.route.snapshot.paramMap.get('id');
+    if (this.param) {
+      const id = this.param;
+      this.event = this.eventService.getEvent(this.param);
     }
 
   }
@@ -28,7 +29,7 @@ export class EditEventComponent implements OnInit {
     this.router.navigate(['/events']);
   }
   cancel() {
-    this.router.navigate(['/events']);
+    this.router.navigate(['/events', this.param]);
   }
 
 }
